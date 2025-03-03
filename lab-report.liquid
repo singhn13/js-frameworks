@@ -1,0 +1,73 @@
+---
+layout: layout
+title: "Lab Report"
+---
+
+<h1 class="text-2xl font-bold mb-4">Lab Report: AI Tool Effectiveness</h1>
+
+<p class="mb-4">
+  For this lab, I used two different AI models in Copilot, GPT-4o and Claude 3.5 Sonnet, to help build a basic 11ty site integrating an API-based image fetch. Below are two key questions I asked both models, along with their responses.
+</p>
+
+<h2 class="text-xl font-semibold mt-6">I want to use Alpine.js to fetch and display images from an API. How do I do this?</h2>
+
+<h3 class="text-lg font-medium">GPT-4o Response:</h3>
+<p class="mb-4 p-4 bg-gray-100 rounded">
+  You can define an Alpine component using `x-data`, then use a function inside it to fetch an image blob and convert it into an object URL. Example:
+  <pre class="bg-black text-white p-2 rounded"><code>
+function imageFetcher() {
+  return {
+    image: '',
+    fetchImage() {
+      fetch('https://dummyjson.com/image/400x200/282828')
+        .then(response => response.blob())
+        .then(blob => { this.image = URL.createObjectURL(blob); });
+    }
+  };
+}
+  </code></pre>
+</p>
+
+<h3 class="text-lg font-medium">Claude 3.5 Sonnet Response:</h3>
+<p class="mb-4 p-4 bg-gray-100 rounded">
+  Use `x-data` for state management and `@click` to trigger an API call. Example:
+  <pre class="bg-black text-white p-2 rounded"><code>
+x-data="{ image: '', fetchImage() { fetch('https://dummyjson.com/image/400x200/282828').then(res => res.blob()).then(blob => this.image = URL.createObjectURL(blob)) } }"
+  </code></pre>
+</p>
+
+<h2 class="text-xl font-semibold mt-6">How do I configure `.eleventy.js` to allow additional JavaScript files?</h2>
+
+<h3 class="text-lg font-medium">GPT-4o Response:</h3>
+<p class="mb-4 p-4 bg-gray-100 rounded">
+  Modify your `.eleventy.js` file to include passthrough settings for JavaScript and CSS files:
+  <pre class="bg-black text-white p-2 rounded"><code>
+module.exports = function(eleventyConfig) {
+  eleventyConfig.addPassthroughCopy("js");
+  eleventyConfig.addPassthroughCopy("css");
+  return {
+    dir: {
+      input: ".",
+      output: "_site"
+    }
+  };
+};
+  </code></pre>
+</p>
+
+<h3 class="text-lg font-medium">Claude 3.5 Sonnet Response:</h3>
+<p class="mb-4 p-4 bg-gray-100 rounded">
+  Ensure `.eleventy.js` allows passthrough copy for scripts:
+  <pre class="bg-black text-white p-2 rounded"><code>
+eleventyConfig.addPassthroughCopy("js");
+  </code></pre>
+  This lets JavaScript files be accessed directly from the output directory.
+</p>
+
+<h2 class="text-xl font-semibold mt-6">Final Reflection</h2>
+<p class="mb-4">
+  While both AI models provided helpful answers, GPT-4o was more context-aware and required less tweaking in the input prompt to generate fully structured responses. It explained concepts in a more detailed way and provided complete code snippets with explanations.
+</p>
+<p class="mb-4">
+  Claude 3.5 Sonnet was concise but sometimes left out small but critical details. It was useful for quick references or resolving errors, but GPT-4o was better for step-by-step guidance.
+</p>
