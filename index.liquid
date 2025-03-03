@@ -3,44 +3,28 @@ layout: layout
 title: "JS Frameworks"
 ---
 
-<h1 class="text-2xl font-bold mb-4">Javascript Frameworks with AI</h1>
+<h1 class="text-3xl font-bold mb-6 text-gray-800">JavaScript Frameworks with AI</h1>
+
 <div x-data="imageFetcher()" class="space-y-8">
-  <div class="p-4 bg-white shadow rounded">
-    <h2 class="text-xl font-semibold mb-2">Endpoint 1</h2>
-    <button @click="fetchImage1" class="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+  <div class="p-6 bg-white shadow rounded-lg">
+    <h2 class="text-2xl font-semibold mb-3 text-gray-700">Endpoint 1</h2>
+    <button @click="fetchImage1" class="mb-4 px-5 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
       Load Image 1
     </button>
     <div x-show="image1">
-      <img :src="image1" class="rounded shadow">
+      <img :src="image1" class="rounded-lg shadow-lg w-full max-w-md">
     </div>
   </div>
 
-  <div class="p-4 bg-white shadow rounded">
-    <h2 class="text-xl font-semibold mb-2">Endpoint 2</h2>
-    <button @click="fetchImage2" class="mb-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+  <div class="p-6 bg-white shadow rounded-lg">
+    <h2 class="text-2xl font-semibold mb-3 text-gray-700">Endpoint 2</h2>
+    <button @click="fetchImage2" class="mb-4 px-5 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition">
       Load Image 2
     </button>
     <div x-show="image2">
-      <img :src="image2" class="rounded shadow">
+      <img :src="image2" class="rounded-lg shadow-lg w-full max-w-md">
     </div>
   </div>
 </div>
 
-<script>
-  function imageFetcher() {
-    return {
-      image1: '',
-      image2: '',
-      fetchImage1() {
-        fetch('https://dummyjson.com/image/400x200/282828')
-          .then(response => response.blob())
-          .then(blob => { this.image1 = URL.createObjectURL(blob); });
-      },
-      fetchImage2() {
-        fetch('https://dummyjson.com/image/500x300/123456')
-          .then(response => response.blob())
-          .then(blob => { this.image2 = URL.createObjectURL(blob); });
-      }
-    }
-  }
-</script>
+<script src="/js/imageFetcher.js"></script>
